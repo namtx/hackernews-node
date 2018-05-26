@@ -1,0 +1,10 @@
+service: hackernews-node
+stage: dev
+endpoint: http://localhost:4466
+datamodel: datamodel.graphql
+secret: my-secret
+hooks:
+  post-deploy:
+    - echo "Deployment finished"
+    - graphql get-schema -p database
+    - graphql codegen
